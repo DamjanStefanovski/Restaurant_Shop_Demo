@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic.base import TemplateView
+from oscar.app import application
 
 
 urlpatterns = [
@@ -26,5 +27,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('cart', include('cart.urls')),
     path('orders/', include('orders.urls')),
-    path('', include('shop.urls')),
+    #path('', include('shop.urls')),
+    path('', application.urls),
+    path('shop', include('shop.urls', namespace='home')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
